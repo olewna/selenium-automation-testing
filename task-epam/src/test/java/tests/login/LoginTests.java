@@ -3,13 +3,15 @@ package tests.login;
 import base.BaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.models.User;
+import org.service.UserService;
 
 public class LoginTests extends BaseTest {
-
+    private User userWithWrongCredentials = UserService.withWrongCredentials();
     @Test
     public void testLoginWithEmptyCredentials() {
-        loginPage.setUsernameField("anyCredential");
-        loginPage.setPasswordField("anyCredential");
+        loginPage.setUsernameField(userWithWrongCredentials.getUsername());
+        loginPage.setPasswordField(userWithWrongCredentials.getPassword());
 
         loginPage.clearUsernameField();
         loginPage.clearPasswordField();
@@ -23,8 +25,8 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void testLoginWithOnlyUsername() {
-        loginPage.setUsernameField("anyCredential");
-        loginPage.setPasswordField("anyCredential");
+        loginPage.setUsernameField(userWithWrongCredentials.getUsername());
+        loginPage.setPasswordField(userWithWrongCredentials.getPassword());
 
         loginPage.clearPasswordField();
 
