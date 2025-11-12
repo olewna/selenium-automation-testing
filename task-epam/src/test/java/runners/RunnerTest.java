@@ -11,5 +11,5 @@ import static io.cucumber.junit.platform.engine.Constants.*;
 @IncludeEngines("cucumber") // uruchamia silnik Cucumber
 @SelectClasspathResource("features") // katalog z plikami .feature
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "base,tests.login,tests.home") // pakiety z krokami
-public class TestRunner {
+public class RunnerTest {
 }

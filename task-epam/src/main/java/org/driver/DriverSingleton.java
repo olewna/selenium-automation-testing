@@ -5,31 +5,31 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
 public class DriverSingleton {
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private DriverSingleton() {}
 
     public static WebDriver getDriver(String browser) {
-        if (driver == null) {
+        if (driver.get() == null) {
             switch (browser.toLowerCase()) {
                 case "chrome":
-                    driver = new ChromeDriver();
+                    driver.set(new ChromeDriver());
                     break;
                 case "edge":
-                    driver = new EdgeDriver();
+                    driver.set(new EdgeDriver());
                     break;
                 default:
                     throw new IllegalArgumentException("Wrong browser driver: " + browser);
             }
-            driver.manage().window().maximize();
+            driver.get().manage().window().maximize();
         }
 
-        return driver;
+        return driver.get();
     }
 
     public static void quitDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
         }
     }
 }

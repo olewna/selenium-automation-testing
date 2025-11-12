@@ -13,7 +13,9 @@ public class BaseTest {
     @Before
     public void setUp() {
 //        driver = DriverSingleton.getDriver("chrome");
-        driver = DriverSingleton.getDriver("edge");
+//        driver = DriverSingleton.getDriver("edge");
+        String browser = System.getProperty("browser", "chrome");
+        driver = DriverSingleton.getDriver(browser);
     }
 
     @After
