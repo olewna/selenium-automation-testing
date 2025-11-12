@@ -1,0 +1,39 @@
+package tests.home;
+
+import base.BaseTest;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
+import org.models.User;
+import org.openqa.selenium.WebDriver;
+import org.pages.HomePage;
+import org.pages.LoginPage;
+import org.service.UserService;
+
+public class HomeSteps {
+    private WebDriver driver = BaseTest.driver;
+    private LoginPage loginPage;
+    private HomePage homePage;
+    private User userCorrect = UserService.withCredentialsFromProperty();
+    private String actualTitle;
+
+    @Given("User logs on {string} with correct credentials")
+    public void logIn(String url) {
+        driver.get(url);
+        loginPage = new LoginPage();
+        loginPage.setDriver(driver);
+
+        homePage = loginPage.login(userCorrect.getUsername(), userCorrect.getPassword());
+    }
+
+    @When("Homepage is loaded")
+    public void getDashboardTitle() {
+        actualTitle = homePage.getDashboardTitle();
+    }
+
+    @Then("Dashboard title should be {string}")
+    public void verifyDashboardTitle(String expectedTitle) {
+        Assertions.assertTrue(actualTitle.contains(expectedTitle));
+    }
+}
