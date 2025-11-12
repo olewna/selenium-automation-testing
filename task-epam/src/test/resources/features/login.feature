@@ -13,7 +13,15 @@ Feature: User Login
     And User clicks login button
     Then Error message should contain "Password is required"
 
-  Scenario: Validate dashboard title after login
-    Given User logs on "https://www.saucedemo.com/" with correct credentials
+  Scenario Outline: Validate dashboard title after login
+    Given User logs on "https://www.saucedemo.com/" with username "<username>" and password "<password>"
     When Homepage is loaded
     Then Dashboard title should be "Swag Labs"
+    Examples:
+      | username | password |
+#      | locked_out_user | secret_sauce |
+      | standard_user | secret_sauce |
+      | problem_user | secret_sauce |
+      | performance_glitch_user | secret_sauce |
+      | error_user | secret_sauce |
+      | visual_user | secret_sauce |

@@ -15,14 +15,15 @@ public class HomeSteps {
     private WebDriver driver = BaseTest.driver;
     private LoginPage loginPage;
     private HomePage homePage;
-    private User userCorrect = UserService.withCredentialsFromProperty();
     private String actualTitle;
 
-    @Given("User logs on {string} with correct credentials")
-    public void logIn(String url) {
+    @Given("User logs on {string} with username {string} and password {string}")
+    public void logIn(String url, String username, String password) {
         driver.get(url);
         loginPage = new LoginPage();
         loginPage.setDriver(driver);
+
+        User userCorrect = UserService.withCredentialsFromProperty(username, password);
 
         homePage = loginPage.login(userCorrect.getUsername(), userCorrect.getPassword());
     }

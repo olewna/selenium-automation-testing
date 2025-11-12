@@ -16,7 +16,7 @@ public class BaseTest {
     public void setUp() {
 //        driver = DriverSingleton.getDriver("chrome");
 //        driver = DriverSingleton.getDriver("edge");
-        String browser = System.getProperty("browser", "chrome");
+        String browser = System.getProperty("browser", "chrome"); //chrome deafult
         log.info("Starting browser: {}", browser);
         driver = DriverSingleton.getDriver(browser);
     }

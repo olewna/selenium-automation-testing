@@ -3,11 +3,8 @@ package org.service;
 import org.models.User;
 
 public class UserService {
-    public static final String USERNAME = "performance_glitch_user";
-    public static final String PASSWORD = "secret_sauce";
-
-    public static User withCredentialsFromProperty(){
-        return new User(USERNAME, PASSWORD);
+    public static User withCredentialsFromProperty(String username, String password){
+        return new User(username, password);
     }
 
     public static User withWrongCredentials() {

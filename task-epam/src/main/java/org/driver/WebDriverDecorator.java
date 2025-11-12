@@ -55,6 +55,8 @@ public class WebDriverDecorator implements WebDriver {
         List<WebElement> elements = driver.findElements(by);
         return elements;
     }
+
+    // Other unused methods TODO
     @Override public String getCurrentUrl() { return driver.getCurrentUrl(); }
     @Override public String getPageSource() { return driver.getPageSource(); }
     @Override public Navigation navigate() { return driver.navigate(); }

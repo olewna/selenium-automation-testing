@@ -45,35 +45,31 @@ public class WebElementDecorator implements WebElement {
         log.info("Finding element by {}", by);
         return element.findElement(by);
     }
-    @Override public boolean isDisplayed() { return element.isDisplayed(); }
 
+    // Other unused methods TODO
+    @Override public boolean isDisplayed() { return element.isDisplayed(); }
     @Override
     public Point getLocation() {
         return element.getLocation();
     }
-
     @Override
     public Dimension getSize() {
         return element.getSize();
     }
-
     @Override
     public Rectangle getRect() {
         return element.getRect();
     }
-
     @Override
     public String getCssValue(String propertyName) {
         return element.getCssValue(propertyName);
     }
-
     @Override public boolean isEnabled() { return element.isEnabled(); }
     @Override public boolean isSelected() { return element.isSelected(); }
     @Override public void clear() { element.clear(); }
     @Override public String getTagName() { return element.getTagName(); }
     @Override public String getAttribute(String name) { return element.getAttribute(name); }
     @Override public void submit() { element.submit(); }
-
     @Override
     public <X> X getScreenshotAs(OutputType<X> target) throws WebDriverException {
         return null;
