@@ -10,16 +10,19 @@ public class DriverSingleton {
 
     public static WebDriver getDriver(String browser) {
         if (driver.get() == null) {
+            WebDriver baseDriver;
+
             switch (browser.toLowerCase()) {
                 case "chrome":
-                    driver.set(new ChromeDriver());
+                    baseDriver = new ChromeDriver();
                     break;
                 case "edge":
-                    driver.set(new EdgeDriver());
+                    baseDriver = new EdgeDriver();
                     break;
                 default:
                     throw new IllegalArgumentException("Wrong browser driver: " + browser);
             }
+            driver.set(new WebDriverDecorator(baseDriver));
             driver.get().manage().window().maximize();
         }
 
